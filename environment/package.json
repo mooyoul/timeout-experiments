@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Test suppport envrionment for experimenting timeouts",
   "scripts": {
-    "clean": "rm *.js",
+    "clean": "rm -f *.js",
     "prebuild": "npm run clean",
     "build": "tsc"
   },
