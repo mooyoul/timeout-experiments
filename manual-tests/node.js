@@ -4,7 +4,8 @@ const debug = require("debug");
 const dns = require("dns");
 const http = require("http");
 
-const log = debug("dns-timeout-test");
+const log = debug("node-manual-test");
+log.enabled = true;
 
 const url = process.env.URL;
 const timeout = parseInt(process.env.TIMEOUT, 10) || 1000;
