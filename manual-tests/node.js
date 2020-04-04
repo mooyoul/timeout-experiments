@@ -47,6 +47,7 @@ req
   })
   .on("timeout", () => {
     log("request timeout");
+    req.abort();
   })
   .on("response", (res) => {
     log("got response: ", res.statusCode);
