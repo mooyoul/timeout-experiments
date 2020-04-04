@@ -1,0 +1,11 @@
+{
+  "name": "manual-tests",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "MooYeol Prescott Lee <mooyoul@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^4.1.1"
+  }
+}
