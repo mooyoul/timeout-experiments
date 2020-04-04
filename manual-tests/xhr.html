@@ -23,55 +23,65 @@
 <pre id="console"></pre>
 
 <script type="text/javascript">
-  const formEl = document.querySelector("#request");
-  const consoleEl = document.querySelector("#console");
-  const urlEl = formEl.querySelector("#url");
-  const timeoutEl = formEl.querySelector("#timeout");
+  ready(function () {
+    const formEl = document.querySelector("#request");
+    const consoleEl = document.querySelector("#console");
+    const urlEl = formEl.querySelector("#url");
+    const timeoutEl = formEl.querySelector("#timeout");
 
-  function log() {
-    const args = Array.prototype.slice.call(arguments);
-    const row = args.join(" ") + "\n";
-    consoleEl.textContent += row;
-  }
+    formEl.addEventListener("submit", function onSubmit(e) {
+      e.preventDefault();
 
-  formEl.addEventListener("submit", function onSubmit(e) {
-    e.preventDefault();
+      const url = urlEl.value;
+      const timeout = parseInt(timeoutEl.value, 10) || null;
 
-    const url = urlEl.value;
-    const timeout = parseInt(timeoutEl.value, 10) || null;
+      const options = {
+        method: "GET",
+        url: url,
+        timeout: timeout,
+      };
 
-    const options = {
-      method: "GET",
-      url: url,
-      timeout: timeout,
-    };
+      request(options);
+    });
 
-    request(options);
-  });
-
-  function request(options) {
-    log("request options: ", JSON.stringify(options));
-
-    const request = new XMLHttpRequest();
-    request.open(options.method, options.url, true);
-
-    if (options.timeout) {
-      request.timeout = options.timeout;
+    function log() {
+      const args = Array.prototype.slice.call(arguments);
+      const row = args.join(" ") + "\n";
+      consoleEl.textContent += row;
     }
 
-    request.onreadystatechange = function() {
-      log("ready state change: ", this.readyState);
-    };
+    function request(options) {
+      log("request options: ", JSON.stringify(options));
 
-    request.onload = function() {
-      log("got response: ", this.status, this.response);
-    };
+      const request = new XMLHttpRequest();
+      request.open(options.method, options.url, true);
 
-    request.onerror = function(e) {
-      log("error: ", e);
-    };
+      if (options.timeout) {
+        request.timeout = options.timeout;
+      }
 
-    request.send();
+      request.onreadystatechange = function() {
+        log("ready state change: ", this.readyState);
+      };
+
+      request.onload = function() {
+        log("got response: ", this.status, this.response);
+      };
+
+      request.onerror = function(e) {
+        log("error: ", e);
+      };
+
+      request.send();
+    }
+  });
+
+  function ready(fn) {
+    if (document.readyState !== "loading"){
+      fn();
+    } else {
+      document.addEventListener("DOMContentLoaded", fn);
+    }
   }
 </script>
 </body>
