@@ -1,0 +1,25 @@
+{
+  "name": "timeout-experiment-environment",
+  "version": "1.0.0",
+  "description": "Test suppport envrionment for experimenting timeouts",
+  "scripts": {
+    "clean": "rm *.js",
+    "prebuild": "npm run clean",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mooyoul/timeout-expriments.git"
+  },
+  "author": "MooYeol Prescott Lee <mooyoul@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mooyoul/timeout-expriments/issues"
+  },
+  "homepage": "https://github.com/mooyoul/timeout-expriments#readme",
+  "devDependencies": {
+    "@types/node": "12.12.34",
+    "typescript": "3.8.3"
+  },
+  "dependencies": {}
+}
