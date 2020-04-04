@@ -53,7 +53,7 @@ It includes entire timings from DNS Lookup to Response body download.
 | Connect Timeout | No | Partial (only supports detection)<br>Can't customize connect timeout. Follows OS-wide setting. |
 | Read Timeout | No | Limited (only supports idle timeout configuration) | 
 | Write Timeout | No | Limited (only supports idle timeout configuration) |
-| Request Timeout | Yes | No | 
+| Call Timeout | Yes | No | 
 
 
 ## How HTTP clients handle timeouts
