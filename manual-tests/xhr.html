@@ -54,6 +54,7 @@
       log("request options: ", JSON.stringify(options));
 
       const request = new XMLHttpRequest();
+      const startedAt = Date.now();
       request.open(options.method, options.url, true);
 
       if (options.timeout) {
@@ -61,15 +62,24 @@
       }
 
       request.onreadystatechange = function() {
-        log("ready state change: ", this.readyState);
+        const elapsed = Date.now() - startedAt;
+        log("ready state change: ", this.readyState, elapsed);
       };
 
       request.onload = function() {
-        log("got response: ", this.status, this.response);
+        const elapsed = Date.now() - startedAt;
+        log("got response: ", this.status, this.response, elapsed);
       };
 
       request.onerror = function(e) {
+        const elapsed = Date.now() - startedAt;
         log("error: ", e);
+        log(elapsed);
+      };
+
+      request.ontimeout = function(e) {
+        const elapsed = Date.now() - startedAt;
+        log("timeout: ", elapsed);
       };
 
       request.send();
